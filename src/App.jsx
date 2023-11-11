@@ -52,45 +52,56 @@ export default function App() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center p-4">
-      <h1 className="text-4xl font-bold text-center mb-8">Pokemon List</h1>
-      {/*  */}
-      <input
-        type="text"
-        className="mb-4 p-2 border border-gray-300 rounded"
-        placeholder="Search Pokemon"
-        onChange={handleSearchChange}
-      />
+    <div>
+      <nav className="bg-red-600 text-white p-4">
+        <div className="container mx-auto">
+          <h1 className="text-lg font-bold">
+            {" "}
+            <span className="text-lg text-blue-300">CloudNC</span> Pokédex
+            Challenge
+          </h1>
+        </div>
+      </nav>
+      <div className="flex flex-col items-center justify-center p-4">
+        <h1 className="text-4xl font-bold text-center mb-8">Pokemon List</h1>
+        {/*  */}
+        <input
+          type="text"
+          className="mb-4 p-2 border border-gray-300 rounded"
+          placeholder="Search Pokemon"
+          onChange={handleSearchChange}
+        />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {currentPokemons.map((pokemon) => (
-          <PokemonCard key={pokemon.name} pokemon={pokemon} />
-        ))}
-      </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {currentPokemons.map((pokemon) => (
+            <PokemonCard key={pokemon.name} pokemon={pokemon} />
+          ))}
+        </div>
 
-      <div className="flex justify-center my-4">
-        <button
-          className={`font-bold py-2 px-4 rounded-l mr-2 ${
-            currentPage > 1
-              ? "bg-blue-500 hover:bg-blue-700 text-white"
-              : "bg-gray-500 text-gray-300 cursor-not-allowed"
-          }`}
-          onClick={handlePrevClick}
-          disabled={currentPage <= 1}
-        >
-          Prev
-        </button>
-        <button
-          className={`font-bold py-2 px-4 rounded-r ml-2 ${
-            currentPage * itemsPerPage < filteredPokemons.length
-              ? "bg-blue-500 hover:bg-blue-700 text-white"
-              : "bg-gray-500 text-gray-300 cursor-not-allowed"
-          }`}
-          onClick={handleNextClick}
-          disabled={currentPage * itemsPerPage >= filteredPokemons.length}
-        >
-          Next
-        </button>
+        <div className="flex justify-center my-4">
+          <button
+            className={`font-bold py-2 px-4 rounded-l mr-2 ${
+              currentPage > 1
+                ? "bg-blue-500 hover:bg-blue-700 text-white"
+                : "bg-gray-500 text-gray-300 cursor-not-allowed"
+            }`}
+            onClick={handlePrevClick}
+            disabled={currentPage <= 1}
+          >
+            Prev
+          </button>
+          <button
+            className={`font-bold py-2 px-4 rounded-r ml-2 ${
+              currentPage * itemsPerPage < filteredPokemons.length
+                ? "bg-blue-500 hover:bg-blue-700 text-white"
+                : "bg-gray-500 text-gray-300 cursor-not-allowed"
+            }`}
+            onClick={handleNextClick}
+            disabled={currentPage * itemsPerPage >= filteredPokemons.length}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );
